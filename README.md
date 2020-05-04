@@ -1,2 +1,2 @@
 # tempwear
-Recommends you what to wear depending on weather.
+A desktop app that recommends you what to wear depending on the weather.
