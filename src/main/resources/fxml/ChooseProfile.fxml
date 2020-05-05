@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Scene fill="#505050" xmlns="http://javafx.com/javafx/10.0.2-internal">
+   <AnchorPane prefHeight="540.0" prefWidth="960.0">
+      <ImageView fitHeight="128.0" fitWidth="480.0" layoutX="240.0" pickOnBounds="true" preserveRatio="true"/>
+      <Button layoutX="359.0" layoutY="270.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="243.0"
+              text="Get Recommendations" textAlignment="CENTER">
+         <font>
+            <Font size="20.0"/>
+         </font>
+         <effect>
+            <ColorAdjust contrast="0.05"/>
+         </effect>
+      </Button>
+      <TextField layoutX="355.0" layoutY="219.0" prefHeight="25.0" prefWidth="244.0" promptText="Enter profile name"/>
+      <Button layoutX="364.0" layoutY="365.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="238.0"
+              text="Create Profile" textAlignment="CENTER">
+         <font>
+            <Font size="20.0"/>
+         </font>
+         <effect>
+            <ColorAdjust contrast="0.05"/>
+         </effect>
+      </Button>
+   </AnchorPane>
+</Scene>
