@@ -1,33 +1,34 @@
 package application;
 
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class Main extends Application {
 
-    private static String NAME = "Tempwear";
+    public static String VIEWS = "/views/";
 
-    public static String FXMLS = "/fxml/";
+    public static Stage stage;
 
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(FXMLS + "ChooseProfile.fxml"));
-        Scene scene = loader.load();
+    public void start(Stage primaryStage) throws IOException {
+        Scene scene = FXMLLoader.load(getClass().getResource(VIEWS + "ChooseProfile.fxml"));
 
-        stage.setScene(scene);
-        stage.setTitle(NAME);
-        stage.show();
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Tempwear");
+        primaryStage.show();
+
+        setStage(primaryStage);
+    }
+
+    public void setStage(Stage primaryStage) {
+        stage = primaryStage;
     }
 }
