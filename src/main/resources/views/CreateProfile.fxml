@@ -1,14 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
+<?import java.lang.*?>
+<?import javafx.collections.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<Scene xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
-       fx:controller="controllers.CreateProfileController">
-    <ScrollPane prefHeight="540.0" prefWidth="960.0">
-        <AnchorPane prefHeight="538.0" prefWidth="958.0">
+<?import java.util.ArrayList?>
+<AnchorPane prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateProfileController">
+    <Label layoutX="356.0" layoutY="97.0" text="Name:">
+        <font>
+            <Font size="20.0" />
+        </font>
+    </Label>
+    <TextField fx:id="name" layoutX="438.0" layoutY="99.0" promptText="Enter profile name" />
+    <Label layoutX="350.0" layoutY="127.0" text="Gender:">
+        <font>
+            <Font size="20.0" />
+        </font>
+    </Label>
+    <ChoiceBox fx:id="gender" layoutX="438.0" layoutY="129.0" prefWidth="150.0">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Male" />
+                <String fx:value="Female" />
+            </FXCollections>
+        </items>
+    </ChoiceBox>
+    <Label layoutX="223.0" layoutY="156.0" text="Clothing:">
+        <font>
+            <Font size="20.0" />
+        </font>
+    </Label>
+    <CheckBox fx:id="checkbox1" layoutX="316.0" layoutY="163.0" mnemonicParsing="false" text="Umbrella" />
+    <CheckBox fx:id="checkbox2" layoutX="414.0" layoutY="163.0" mnemonicParsing="false" text="Anorak" />
+    <CheckBox fx:id="checkbox3" layoutX="486.0" layoutY="163.0" mnemonicParsing="false" text="Blazer" />
+    <CheckBox fx:id="checkbox4" layoutX="567.0" layoutY="163.0" mnemonicParsing="false" text="Blouse" />
+    <CheckBox fx:id="checkbox5" layoutX="635.0" layoutY="163.0" mnemonicParsing="false" text="Bomber" />
 
-         </AnchorPane>
-    </ScrollPane>
-</Scene>
+     <CheckBox fx:id="checkbox6" layoutX="316.0" layoutY="194.0" mnemonicParsing="false" text="Cardigan" />
+     <CheckBox fx:id="checkbox7" layoutX="414.0" layoutY="194.0" mnemonicParsing="false" text="Halter" />
+     <CheckBox fx:id="checkbox8" layoutX="486.0" layoutY="194.0" mnemonicParsing="false" text="Hoodie" />
+     <CheckBox fx:id="checkbox9" layoutX="567.0" layoutY="194.0" mnemonicParsing="false" text="Jeans" />
+     <CheckBox fx:id="checkbox10" layoutX="635.0" layoutY="194.0" mnemonicParsing="false" text="Winter jacket" />
+
+     <CheckBox fx:id="checkbox11" layoutX="316.0" layoutY="225.0" mnemonicParsing="false" text="Coat" />
+     <CheckBox fx:id="checkbox12" layoutX="414.0" layoutY="225.0" mnemonicParsing="false" text="Jersey" />
+     <CheckBox fx:id="checkbox13" layoutX="486.0" layoutY="225.0" mnemonicParsing="false" text="Leggings" />
+     <CheckBox fx:id="checkbox14" layoutX="567.0" layoutY="225.0" mnemonicParsing="false" text="Skirt" />
+     <CheckBox fx:id="checkbox15" layoutX="635.0" layoutY="225.0" mnemonicParsing="false" text="Tank top" />
+
+     <CheckBox fx:id="checkbox16" layoutX="316.0" layoutY="256.0" mnemonicParsing="false" text="T-shirt" />
+     <CheckBox fx:id="checkbox17" layoutX="414.0" layoutY="256.0" mnemonicParsing="false" text="Shorts" />
+     <CheckBox fx:id="checkbox18" layoutX="486.0" layoutY="256.0" mnemonicParsing="false" text="Turtleneck" />
+     <CheckBox fx:id="checkbox19" layoutX="567.0" layoutY="256.0" mnemonicParsing="false" text="Fleece" />
+     <CheckBox fx:id="checkbox20" layoutX="635.0" layoutY="256.0" mnemonicParsing="false" text="Short sleeves" />
+
+     <CheckBox fx:id="checkbox21" layoutX="316.0" layoutY="287.0" mnemonicParsing="false" text="Long sleeves" />
+     <CheckBox fx:id="checkbox22" layoutX="414.0" layoutY="287.0" mnemonicParsing="false" text="Sweater" />
+     <CheckBox fx:id="checkbox23" layoutX="486.0" layoutY="287.0" mnemonicParsing="false" text="Cap" />
+     <CheckBox fx:id="checkbox24" layoutX="567.0" layoutY="287.0" mnemonicParsing="false" text="Shoes" />
+     <CheckBox fx:id="checkbox25" layoutX="635.0" layoutY="287.0" mnemonicParsing="false" text="Boots" />
+     <Label layoutX="370.0" layoutY="24.0" text="Create Profile">
+        <font>
+           <Font size="36.0" />
+        </font>
+     </Label>
+     <Label layoutX="237.0" layoutY="346.0" text="Rules:">
+         <font>
+           <Font size="20.0" />
+        </font>
+     </Label>
+     <TextArea fx:id="rulesTextArea" layoutX="316.0" layoutY="346.0" prefHeight="156.0" prefWidth="428.0" />
+     <Button layoutX="677.0" layoutY="313.0" mnemonicParsing="false" onAction="#onCheckBox" text="Apply choices" />
+     <Button layoutX="677.0" layoutY="507.0" mnemonicParsing="false" onAction="#onCreateProfile" text="Create profile" />
+     <fx:define>
+        <ArrayList fx:id="checkBoxList">
+            <fx:reference source="checkbox1" />
+            <fx:reference source="checkbox2" />
+            <fx:reference source="checkbox3" />
+            <fx:reference source="checkbox4" />
+            <fx:reference source="checkbox5" />
+
+            <fx:reference source="checkbox6" />
+            <fx:reference source="checkbox7" />
+            <fx:reference source="checkbox8" />
+            <fx:reference source="checkbox9" />
+            <fx:reference source="checkbox10" />
+
+            <fx:reference source="checkbox11" />
+            <fx:reference source="checkbox12" />
+            <fx:reference source="checkbox13" />
+            <fx:reference source="checkbox14" />
+            <fx:reference source="checkbox15" />
+
+            <fx:reference source="checkbox16" />
+            <fx:reference source="checkbox17" />
+            <fx:reference source="checkbox18" />
+            <fx:reference source="checkbox19" />
+            <fx:reference source="checkbox20" />
+
+            <fx:reference source="checkbox21" />
+            <fx:reference source="checkbox22" />
+            <fx:reference source="checkbox23" />
+            <fx:reference source="checkbox24" />
+            <fx:reference source="checkbox25" />
+        </ArrayList>
+     </fx:define>
+</AnchorPane>
