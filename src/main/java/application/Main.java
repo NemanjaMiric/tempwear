@@ -2,9 +2,13 @@ package application;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.scene.transform.Scale;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -38,13 +42,24 @@ public class Main extends Application {
             Scale scale = new Scale(newSceneWidth.doubleValue()/oldSceneWidth.doubleValue(), 1, 0, 0);
             pane.getTransforms().add(scale);
             stage.show();
-
         });
         scene.heightProperty().addListener((observableValue, oldSceneHeight, newSceneHeight) -> {
             Scale scale = new Scale(1, newSceneHeight.doubleValue()/oldSceneHeight.doubleValue(), 0, 0);
             pane.getTransforms().add(scale);
             stage.show();
         });
+    }
+
+    public static void popup(String message) {
+        final Stage popup = new Stage();
+        popup.initModality(Modality.APPLICATION_MODAL);
+        popup.initOwner(Main.getStage());
+        VBox popupVBox = new VBox(1);
+        popupVBox.setAlignment(Pos.BASELINE_CENTER);
+        popupVBox.getChildren().add(new Text(message));
+        Scene dialogScene = new Scene(popupVBox, 200, 75);
+        popup.setScene(dialogScene);
+        popup.show();
     }
 
     public static void setStage(Stage primaryStage) {

@@ -5,13 +5,19 @@ import database.SQLiteConnection;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.scene.transform.Scale;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import org.sqlite.SQLiteException;
 
 import java.io.IOException;
 import java.net.URL;
@@ -57,34 +63,37 @@ public class CreateProfileController implements Initializable {
         Connection connection = SQLiteConnection.connector();
         assert connection != null;
         connection.prepareStatement(
-                "CREATE TABLE IF NOT EXISTS profiles (name TEXT, gender TEXT, rules TEXT, UNIQUE (name) ON CONFLICT REPLACE)"
+                "CREATE TABLE IF NOT EXISTS profiles (name TEXT UNIQUE, gender TEXT, rules TEXT)"
         ).executeUpdate();
 
-        connection.prepareStatement(
-                "INSERT INTO profiles VALUES ('"
-                    + name.getText() + "', '"
-                    + gender.getSelectionModel().getSelectedItem() + "', '"
-                    + rulesTextArea.getText() + "')"
-        ).executeUpdate();
+        try {
+            connection.prepareStatement(
+                    "INSERT INTO profiles VALUES ('"
+                            + name.getText() + "', '"
+                            + gender.getSelectionModel().getSelectedItem() + "', '"
+                            + rulesTextArea.getText() + "')"
+            ).executeUpdate();
 
-        AnchorPane primaryPane = FXMLLoader.load(getClass().getResource(Main.VIEWS + "ChooseProfile.fxml"));
-        Scene primaryScene = new Scene(primaryPane);
+            AnchorPane primaryPane = FXMLLoader.load(getClass().getResource(Main.VIEWS + "ChooseProfile.fxml"));
+            Scene primaryScene = new Scene(primaryPane);
 
-        Main.getStage().setScene(primaryScene);
+            Main.getStage().setScene(primaryScene);
 
-        Main.setScene(primaryScene);
-        Main.setPane(primaryPane);
+            Main.setScene(primaryScene);
+            Main.setPane(primaryPane);
 
-        Main.getScene().widthProperty().addListener((observableValue, oldSceneWidth, newSceneWidth) -> {
-            Scale scale = new Scale(newSceneWidth.doubleValue()/oldSceneWidth.doubleValue(), 1, 0, 0);
-            Main.getPane().getTransforms().add(scale);
-            Main.getStage().show();
-
-        });
-        Main.getScene().heightProperty().addListener((observableValue, oldSceneHeight, newSceneHeight) -> {
-            Scale scale = new Scale(1, newSceneHeight.doubleValue()/oldSceneHeight.doubleValue(), 0, 0);
-            Main.getPane().getTransforms().add(scale);
-            Main.getStage().show();
-        });
+            Main.getScene().widthProperty().addListener((observableValue, oldSceneWidth, newSceneWidth) -> {
+                Scale scale = new Scale(newSceneWidth.doubleValue()/oldSceneWidth.doubleValue(), 1, 0, 0);
+                Main.getPane().getTransforms().add(scale);
+                Main.getStage().show();
+            });
+            Main.getScene().heightProperty().addListener((observableValue, oldSceneHeight, newSceneHeight) -> {
+                Scale scale = new Scale(1, newSceneHeight.doubleValue()/oldSceneHeight.doubleValue(), 0, 0);
+                Main.getPane().getTransforms().add(scale);
+                Main.getStage().show();
+            });
+        } catch (SQLiteException e) {
+            Main.popup("Profile '" + name.getText() + "' already exists");
+        }
     }
 }
